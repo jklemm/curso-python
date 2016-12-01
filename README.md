@@ -16,4 +16,4 @@
 
 Foi visto sobre algoritmos, e começamos a programar algoritmos de soma e subtração.
 
-Comandos python aprendidos: `print`, `raw_input()`, operadores matemáticos `+` e `-`
+Comandos python aprendidos: `print`, `input()`, operadores matemáticos `+` e `-`
