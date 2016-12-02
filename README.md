@@ -12,6 +12,12 @@
 
 - Execute o arquivo usando o python `python3 nome_do_programa_desejado.py`
 
+#### Dia 02/12/2016
+
+Abordamos Tipos de dados, e foi implementado um programa de tabuada.
+
+Comandos python aprendidos: `not`, `and` e `or`
+
 #### Dia 30/11/2016
 
 Foi visto sobre algoritmos, e começamos a programar algoritmos de soma e subtração.
