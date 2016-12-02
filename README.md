@@ -14,7 +14,9 @@
 
 #### Dia 02/12/2016
 
-Abordamos Tipos de dados, e foi implementado um programa de tabuada.
+Temas abordados: Tipos de dados no Python e conceito de Álgebra Booleana.
+
+Programa: Foi codificado um programa de tabuada.
 
 Comandos python aprendidos: `not`, `and` e `or`
 
