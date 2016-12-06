@@ -8,17 +8,21 @@ altura = 0
 
 try:
     peso = input('Informe seu peso: ')
-    peso = abs(float(peso))      # converte string para float e remove sinal negativo (não existe peso negativo)
+    # converte string para float e remove sinal negativo (não existe peso negativo)
+    peso = abs(float(peso))
 except ValueError:
     print('O peso informado {} é invalido!'.format(peso))
-    quit()  # se o peso é inválido encerra o programa
+    # se o peso é inválido encerra o programa
+    quit()
 
 try:
     altura = input('Informe sua altura: ')
-    altura = abs(float(altura))  # converte string para float e remove sinal negativo (não existe altura negativa)
+    # converte string para float e remove sinal negativo (não existe altura negativa)
+    altura = abs(float(altura))
 except ValueError:
     print('A altura informada {} é invalida!'.format(altura))
-    quit()  # se a altura é inválida encerra o programa
+    # se a altura é inválida encerra o programa
+    quit()
 
 imc = peso / pow(altura, 2)
 
