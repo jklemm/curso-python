@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Cálculos envolvendo números inteiros e reais')
 
 numero1 = int(input('Informe um número inteiro: '))

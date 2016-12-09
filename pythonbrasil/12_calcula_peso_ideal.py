@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Calcula o peso ideal')
 
 altura = float(input('Informe sua altura: '))

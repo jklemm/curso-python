@@ -1,4 +1,3 @@
-# coding: utf-8
 from math import ceil
 
 print('Loja de tintas\n')

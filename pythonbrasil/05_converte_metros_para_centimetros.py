@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Conversor de metros para centímetros')
 
 medida_em_metros = float(input('Informe uma medida em metros: '))

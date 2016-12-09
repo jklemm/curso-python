@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Calcula o salário mensal\n')
 
 valor_hora = float(input('Informe quanto você ganha por hora: R$ '))

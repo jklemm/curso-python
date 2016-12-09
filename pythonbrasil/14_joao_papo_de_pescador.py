@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Calcula peso de peixes excedente')
 
 multa_por_quilo_excedente = 4.00

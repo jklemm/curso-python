@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Calcula o dobro da área de um quadrado')
 
 lateral = float(input('Informe o tamanho de um dos lados do quadrado: '))

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Tempo de download\n')
 
 tamanho_do_arquivo = float(input('Informe o tamanho do arquivo (em MB): '))

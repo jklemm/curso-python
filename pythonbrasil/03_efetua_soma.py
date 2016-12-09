@@ -1,4 +1,4 @@
-# coding: utf-8
+print('Efetua soma de dois números inteiros')
 
 numero1 = int(input('Informe um número: '))
 numero2 = int(input('Informe mais um número: '))

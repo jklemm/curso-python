@@ -1,4 +1,4 @@
-# coding: utf-8
+print('Calcula notas bimestrais')
 
 print('Informe suas quatro notas bimestrais')
 

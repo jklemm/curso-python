@@ -1,4 +1,4 @@
-# coding: utf-8
+print('Escreve o número informado')
 
 numero = input('Informe um número: ')
 

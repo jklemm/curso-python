@@ -1,4 +1,3 @@
-# coding: utf-8
 import math
 
 print('Calcula a área do círculo')

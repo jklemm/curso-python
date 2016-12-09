@@ -1,5 +1,3 @@
-# coding: utf-8
-
 print('Converte graus Farenheit para Celsius')
 
 farenheit = float(input('Informe os graus em Farenheit: '))
