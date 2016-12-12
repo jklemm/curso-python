@@ -16,9 +16,12 @@ else:
 
 situacao = ''
 
-if int(peso) < int(peso_ideal):
+peso_em_inteiro = int(peso)
+peso_ideal_em_inteiro = int(peso_ideal)
+
+if peso_em_inteiro < peso_ideal_em_inteiro:
     situacao = 'abaixo'
-elif int(peso) == int(peso_ideal):
+elif peso_em_inteiro == peso_ideal_em_inteiro:
     situacao = 'dentro'
 else:
     situacao = 'acima'
