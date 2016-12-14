@@ -7,10 +7,10 @@ peso = float(input('Informe o peso total de peixes pescados: '))
 if peso > 50:
     excesso = peso - 50
     multa = excesso * multa_por_quilo_excedente
-    excesso = multa
 else:
-    excesso = 'ZERO'
     multa = 'ZERO'
+
+excesso = multa
 
 print('Excesso: {}'.format(excesso))
 print('Multa: {}'.format(multa))
