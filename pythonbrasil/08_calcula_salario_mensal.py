@@ -1,9 +1,18 @@
-print('Calcula o salário mensal')
+def calcula_salario(quantidade_horas, valor_hora):
+    return quantidade_horas * valor_hora
 
-valor_hora = float(input('Informe quanto você ganha por hora: R$ '))
+def pedir_float(mensagem):
+    return float(input(mensagem))
 
-quantidade_horas = float(input('Informe o número de horas trabalhadas no mês: '))
+def sistema():
+    print('Calcula o salário mensal')
 
-salario = valor_hora * quantidade_horas
+    valor = pedir_float('Informe quanto você ganha por hora: R$ ')
+    quantidade = pedir_float('Informe o número de horas trabalhadas no mês: ')
 
-print('O total do salário neste mês foi R$ {:.2f}'.format(salario))
+    salario = calcula_salario(quantidade, valor)
+
+    print('O total do salário neste mês foi R$ {:.2f}'.format(salario))
+
+if __name__ == '__main__':
+    sistema()
