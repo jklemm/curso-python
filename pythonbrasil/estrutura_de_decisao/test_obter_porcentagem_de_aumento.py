@@ -1,6 +1,6 @@
 from unittest.case import TestCase
 
-from .organizacoes_tabajara import obter_porcentagem_de_aumento
+from .ex_11_organizacoes_tabajara import obter_porcentagem_de_aumento
 
 
 class ObterPorcentagemDeAumentoTests(TestCase):
