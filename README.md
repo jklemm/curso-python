@@ -11,17 +11,3 @@
 - Acesse a pasta que os programas foram baixados (digite `cd c:\pasta\onde\baixou\os\arquivos` e aperte Enter)
 
 - Execute o arquivo usando o python `python3 nome_do_programa_desejado.py`
-
-#### Dia 02/12/2016
-
-Temas abordados: Tipos de dados no Python e conceito de Álgebra Booleana.
-
-Programa: Foi codificado um programa de tabuada.
-
-Comandos python aprendidos: `not`, `and` e `or`
-
-#### Dia 30/11/2016
-
-Foi visto sobre algoritmos, e começamos a programar algoritmos de soma e subtração.
-
-Comandos python aprendidos: `print`, `input()`, operadores matemáticos `+` e `-`
