@@ -10,7 +10,7 @@ def obter_numero_inteiro(msg):
 def obter_maior_numero(numero_1, numero_2, numero_3):
     if numero_1 >= numero_2 and numero_1 >= numero_3:
         return numero_1
-    elif numero_2 >= numero_3 and numero_2 >= numero_1:
+    elif numero_2 >= numero_1 and numero_2 >= numero_3:
         return numero_2
     else:
         return numero_3
