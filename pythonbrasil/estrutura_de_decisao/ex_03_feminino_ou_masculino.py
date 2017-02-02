@@ -5,13 +5,12 @@ Conforme a letra escrever: F - Feminino, M - Masculino, Sexo Inválido.
 
 
 def pede_letra_ao_usuario(msg):
-    return input(msg)
+    # upper - deixa a letra em MAIÚSCULO
+    # strip - remove espaços em branco antes ou depois da letra
+    return input(msg).upper().strip()
 
 
 def obter_sexo_informado(letra):
-    # upper - deixa a letra em MAIÚSCULO
-    # strip - remove espaços em branco antes ou depois da letra
-    letra = letra.upper().strip()
     if letra == 'M':
         return 'Masculino'
     elif letra == 'F':
