@@ -1,10 +1,11 @@
 # Faça um programa que calcule a quantidade de dinheiro armazenada em uma poupança em vários anos.
 # Levando em conta que os juros da poupança anualmente é 12% ao ano (ou 1% ao mês).
 # 
-# O usuário informa o valor inicial, valor que será adicionado a cada mês, e a quantidade de anos (ou meses pode ser, se você achar mais fácil).
+# O usuário informa o valor inicial, valor que será adicionado a cada mês, e a quantidade de anos 
+# (ou meses pode ser, se você achar mais fácil).
 # 
-# O programa deverá calcular e informar o valor final que estará na poupança, lembrando que os juros são calculados com o que já está na poupança 
-# antes de adicionar o valor mensal.
+# O programa deverá calcular e informar o valor final que estará na poupança, lembrando que os juros 
+# são calculados com o que já está na poupança antes de adicionar o valor mensal.
 # 
 # Exemplo:
 # 
@@ -24,10 +25,10 @@ def inicia():
     valor_mensal = float(input('Informe o valor mensal: '))
     quantidade_anos = int(input('Informe a quantidade de anos: '))
 
-    quantidade_meses = quantidade_anos * 12 + 1
+    quantidade_meses = quantidade_anos * 12
 
     valor_total = valor_inicial
-    for mes in range(1, quantidade_meses):
+    for mes in range(1, quantidade_meses + 1):  # O + 1 é pro range considerar o último número
         valor_total *= JUROS_MENSAL
         valor_total += valor_mensal
 
