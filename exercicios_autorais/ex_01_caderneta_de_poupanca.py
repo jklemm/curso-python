@@ -17,7 +17,7 @@
 # 
 # Total na poupança: 60.000
 
-JUROS_MENSAL = 1.0038
+JUROS_MENSAL = 1.01
 
 
 def inicia():
@@ -35,4 +35,9 @@ def inicia():
     print('O valor total é de {:.2f} reais'.format(valor_total))
 
 if __name__ == '__main__':
-    inicia()
+    continuar = True
+    while continuar:
+        inicia()
+        opcao = input('Deseja calcular novamente? S para SIM e N para NÃO')
+    
+        continuar = opcao.upper() == 'S'
