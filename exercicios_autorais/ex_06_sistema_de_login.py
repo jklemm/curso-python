@@ -71,12 +71,15 @@ def tela_inicial():
     print('+-------------------------------+')
     print('1 - Cadastre-se')
     print('2 - Efetuar login')
+    print('3 - Encerrar programa')
     opcao = int(input('Escolha sua opção: '))
 
     if opcao == 1:
         tela_cadastre_se()
     elif opcao == 2:
         tela_efetuar_login()
+    elif opcao == 3:
+        exit(0)
     else:
         print('Opção Inválida! Escolha novamente')
         tela_inicial()
