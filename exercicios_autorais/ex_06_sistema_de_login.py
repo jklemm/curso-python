@@ -15,34 +15,60 @@ lista_de_usuarios = []
 
 
 def tela_cadastre_se():
-    print('tela_cadastre_se')
-    pass
+    print('+-------------------------------+')
+    print('| CADASTRE-SE                   |')
+    print('+-------------------------------+')
+    nome = input('Informe seu nome: ')
+    email = input('Informe seu e-mail: ')
+    senha = input('Informe uma senha: ')
+    novo_usuario = {'nome': nome, 'email': email, 'senha': senha}
+    lista_de_usuarios.append(novo_usuario)
+    tela_inicial()
 
 
-def usuario_e_senha_corretos(usuario, senha):
-    pass
+def email_e_senha_corretos(email, senha):
+    for usuario in lista_de_usuarios:
+        if email == usuario['email']:
+            if senha == usuario['senha']:
+                return True
+            else:
+                break
+    return False
 
 
 def tela_logado():
-    pass
+    print('+-------------------------------+')
+    print('| SUCESSO! VOCÊ ESTÁ LOGADO     |')
+    print('+-------------------------------+')
+    print('1 - Sair')
+    opcao = int(input('Escolha sua opção: '))
 
-
-def tela_fracasso():
-    pass
+    if opcao == 1:
+        tela_inicial()
+    else:
+        print('Opção Inválida! Escolha novamente')
+        tela_logado()
 
 
 def tela_efetuar_login():
-    print('tela_efetuar_login')
-    usuario = ''
-    senha = ''
-    if usuario_e_senha_corretos(usuario, senha):
+    print('+-------------------------------+')
+    print('| EFETUAR LOGIN                 |')
+    print('+-------------------------------+')
+    email = input('Informe seu e-mail: ')
+    senha = input('Informe uma senha: ')
+    if email_e_senha_corretos(email, senha):
         tela_logado()
     else:
-        tela_fracasso() 
+        print('+-------------------------------+')
+        print('| USUÁRIO OU SENHA INCORRETOS   |')
+        print('+-------------------------------+')
+        tela_inicial()
 
 
 def tela_inicial():
-    print('Tela inicial')
+    print('+-------------------------------+')
+    print('| TELA INICIAL                  |')
+    print('+-------------------------------+')
     print('1 - Cadastre-se')
     print('2 - Efetuar login')
     opcao = int(input('Escolha sua opção: '))
