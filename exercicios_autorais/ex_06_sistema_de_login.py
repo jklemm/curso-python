@@ -10,9 +10,9 @@
 # ou senha incorretos", e deve pedir o usuário e senha novamente.
 # Bônus: Armazenar os dados do usuário em um arquivo JSON, dessa forma, mesmo 
 # após fechar o programa, o usuário continuará lá cadastrado.
-import codecs
 import json
 
+import codecs
 
 lista_de_usuarios = []
 
@@ -25,9 +25,9 @@ def carregar_usuarios_do_arquivo_json():
 
 
 def gravar_usuarios_no_arquivo_json():
-    arquivo_usuarios = open('usuarios.json', 'w')
-    usuarios_texto = json.dumps(lista_de_usuarios) 
-    arquivo_usuarios.write(usuarios_texto)
+    with open('usuarios.json', 'w') as arquivo_usuarios:
+        usuarios_texto = json.dumps(lista_de_usuarios)
+        arquivo_usuarios.write(usuarios_texto)
 
 
 def tela_cadastre_se():
