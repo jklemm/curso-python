@@ -31,7 +31,19 @@ def menu_passagem():
     print('[ 2 ] Ver poltronas')
     print('[ 3 ] Finalizar Vendas')
     print('[ 4 ] Sair')
+    print('+-------------------------------------+')
+    return int(input('Informe sua opção :'))
 
 
 if __name__ == '__main__':
-    pass
+    while True:
+        opcao_menu = menu_passagem()
+
+        if opcao_menu == 1:
+            print('Vender passagem')
+        elif opcao_menu == 2:
+            print('Ver poltronas')
+        elif opcao_menu == 3:
+            print('Finalizar Vendas')
+        elif opcao_menu == 4:
+            print('Sair')
