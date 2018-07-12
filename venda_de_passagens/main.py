@@ -55,8 +55,8 @@ def todas_poltronas_estao_vendidas(poltronas):
 
 
 def mostra_posicoes_livres(poltronas):
-    ' - '.join(str(indice) if not poltrona else poltrona
-               for indice, poltrona in enumerate(poltronas, start=1))
+    return ' - '.join(str(indice) if not poltrona else poltrona
+                      for indice, poltrona in enumerate(poltronas, start=1))
 
 
 def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
