@@ -9,10 +9,15 @@
 # * Ao final da execução, informe o faturamento total das vendas (em Reais), caso a viagem seja confirmada.
 # * Ao final da execução, informe se a viagem foi cancelada ou não.
 
+# Declaração de Constantes
 VENDER_PASSAGEM = 1
 VER_POLTRONAS = 2
 FINALIZAR_VENDAS = 3
 SAIR = 4
+OPCAO_JANELA = 'J'
+OPCAO_CORREDOR = 'C'
+OPCAO_DIREITA = 'D'
+OPCAO_ESQUERDA = 'E'
 
 
 def limpar_tela():
@@ -40,8 +45,37 @@ def menu_passagem():
     return int(input('Informe sua opção :'))
 
 
-def opcao_vender_passagem():
+def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda):
     print('Vender passagem')
+    idade = int(input('Qual a idade do passageiro?: '))
+    paga_meia = idade < 5 or idade > 65
+    if paga_meia:
+        pass_meia += 1
+    else:
+        pass_inteira += 1
+
+    opcao_janela_ou_corredor = input('Digite opção Janela [ J ] ou Corredor [ C ]?: ').upper()
+    if opcao_janela_ou_corredor == OPCAO_JANELA:
+        
+        opcao_direira_ou_esquerda = input('Janela direita [ D ] ou esquerda [ E ]: ').upper()
+        if opcao_direira_ou_esquerda == OPCAO_DIREITA:
+
+            if pol_janela_direita == ['X', 'X', 'X']:
+                print('Todos os lugares estão ocupados!')
+
+            print('Posicoes livres na janela:')
+            for i in range(3):
+                if pol_janela_direita[i] == 0:
+                    print((i+1), end=' - ')
+
+            polcompra = int(input('\nDigite o numero da poltrona desejada: '))
+            if polcompra > 3:
+                print('Opcão invalida!')
+
+            pol_janela_direita[polcompra-1] = 'X'
+
+    elif opcao_janela_ou_corredor == OPCAO_CORREDOR:
+        pass
 
 
 def opcao_ver_poltronas():
@@ -57,11 +91,19 @@ def opcao_sair():
 
 
 if __name__ == '__main__':
+    # Declaração de Variáveis
+    passagem_meia = 0
+    passagem_inteira = 0
+    poltronas_janela_direita = [] * 3
+    poltronas_corredor_direita = [] * 3
+    poltronas_janela_esquerda = [] * 3
+    poltronas_corredor_esquerda = [] * 3
+
     while True:
         opcao_menu = menu_passagem()
 
         if opcao_menu == VENDER_PASSAGEM:
-            opcao_vender_passagem()
+            opcao_vender_passagem(passagem_meia, passagem_inteira, poltronas_janela_direita, poltronas_corredor_direita, poltronas_janela_esquerda, poltronas_corredor_esquerda)
 
         elif opcao_menu == VER_POLTRONAS:
             opcao_ver_poltronas()
