@@ -40,15 +40,34 @@ def menu_passagem():
     return int(input('Informe sua opção :'))
 
 
+def opcao_vender_passagem():
+    print('Vender passagem')
+
+
+def opcao_ver_poltronas():
+    print('Ver poltronas')
+
+
+def opcao_finalizar_vendas():
+    print('Finalizar Vendas')
+
+
+def opcao_sair():
+    print('Sair')
+
+
 if __name__ == '__main__':
     while True:
         opcao_menu = menu_passagem()
 
         if opcao_menu == VENDER_PASSAGEM:
-            print('Vender passagem')
+            opcao_vender_passagem()
+
         elif opcao_menu == VER_POLTRONAS:
-            print('Ver poltronas')
+            opcao_ver_poltronas()
+
         elif opcao_menu == FINALIZAR_VENDAS:
-            print('Finalizar Vendas')
+            opcao_finalizar_vendas()
+
         elif opcao_menu == SAIR:
-            print('Sair')
+            opcao_sair()
