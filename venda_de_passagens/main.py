@@ -9,5 +9,29 @@
 # * Ao final da execução, informe o faturamento total das vendas (em Reais), caso a viagem seja confirmada.
 # * Ao final da execução, informe se a viagem foi cancelada ou não.
 
+
+def limpar_tela():
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear') 
+
+
+def menu_poltronas():
+    print('Lugares vagos [ ] - Lugares ocupados [X]\n')
+    print('                     /__ _ [ ][ ][ ][ ][ ][ ] \  : Janela Direita')
+    print('Frente do ônibus <- |   |  [ ][ ][ ][ ][ ][ ]  | : Janela Esquerda')
+    print('                    | __|_ [ ][ ][ ][ ][ ][ ]  | : Corredor Direita')
+    print('                     \     [ ][ ][ ][ ][ ][ ] /  : Corredor Esquerda')
+
+
+def menu_passagem():
+    print('+-------------------------------------+')
+    print('| CONTROL-VIAGENS: VENDA DE PASSAGENS |')
+    print('+-------------------------------------+')
+    print('[ 1 ] Vender passagem')
+    print('[ 2 ] Ver poltronas')
+    print('[ 3 ] Finalizar Vendas')
+    print('[ 4 ] Sair')
+
+
 if __name__ == '__main__':
     pass
