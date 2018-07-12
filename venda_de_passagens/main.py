@@ -18,6 +18,8 @@ OPCAO_JANELA = 'J'
 OPCAO_CORREDOR = 'C'
 OPCAO_DIREITA = 'D'
 OPCAO_ESQUERDA = 'E'
+NUMERO_PASSAGENS_DISPONIVEIS = 12
+NUMERO_ASSENTOS_POR_FILA = NUMERO_PASSAGENS_DISPONIVEIS // 4
 
 
 def limpar_tela():
@@ -42,40 +44,84 @@ def menu_passagem():
     print('[ 3 ] Finalizar Vendas')
     print('[ 4 ] Sair')
     print('+-------------------------------------+')
-    return int(input('Informe sua opção :'))
+    return int(input('Informe sua opção: '))
 
 
-def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda):
-    print('Vender passagem')
-    idade = int(input('Qual a idade do passageiro?: '))
-    paga_meia = idade < 5 or idade > 65
-    if paga_meia:
-        pass_meia += 1
+def todas_poltronas_estao_vendidas(poltronas):
+    if '' not in poltronas:
+        return True
     else:
-        pass_inteira += 1
+        return False
 
-    opcao_janela_ou_corredor = input('Digite opção Janela [ J ] ou Corredor [ C ]?: ').upper()
-    if opcao_janela_ou_corredor == OPCAO_JANELA:
-        
-        opcao_direira_ou_esquerda = input('Janela direita [ D ] ou esquerda [ E ]: ').upper()
-        if opcao_direira_ou_esquerda == OPCAO_DIREITA:
 
-            if pol_janela_direita == ['X', 'X', 'X']:
-                print('Todos os lugares estão ocupados!')
+def mostra_posicoes_livres(poltronas):
+    for indice, poltrona in enumerate(poltronas):
+        numero_da_poltrona = indice + 1
+        if not poltrona:
+            print(numero_da_poltrona, end=' - ')
+        else:
+            print('X', end=' - ')
 
-            print('Posicoes livres na janela:')
-            for i in range(3):
-                if pol_janela_direita[i] == 0:
-                    print((i+1), end=' - ')
 
-            polcompra = int(input('\nDigite o numero da poltrona desejada: '))
-            if polcompra > 3:
-                print('Opcão invalida!')
+def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
+    while total_vendido <= NUMERO_PASSAGENS_DISPONIVEIS:
+        print('Vender passagem')
+        idade = int(input('Qual a idade do passageiro?: '))
+        paga_meia = idade < 5 or idade > 65
+        if paga_meia:
+            pass_meia += 1
+        else:
+            pass_inteira += 1
+    
+        opcao_janela_ou_corredor = input('Digite opção Janela [ J ] ou Corredor [ C ]?: ').upper()
+        if opcao_janela_ou_corredor == OPCAO_JANELA:
 
-            pol_janela_direita[polcompra-1] = 'X'
+            opcao_direira_ou_esquerda = input('Janela direita [ D ] ou esquerda [ E ]: ').upper()
+            if opcao_direira_ou_esquerda == OPCAO_DIREITA:
+                vender_uma_passagem(pol_janela_direita, total_vendido)
+            elif opcao_direira_ou_esquerda == OPCAO_ESQUERDA:
+                vender_uma_passagem(pol_janela_esquerda, total_vendido)
+            else:
+                print('Opção inválida!')
 
-    elif opcao_janela_ou_corredor == OPCAO_CORREDOR:
-        pass
+        elif opcao_janela_ou_corredor == OPCAO_CORREDOR:
+
+            opcao_direira_ou_esquerda = input('Corredor direita [ D ] ou esquerda [ E ]: ').upper()
+            if opcao_direira_ou_esquerda == OPCAO_DIREITA:
+                vender_uma_passagem(pol_corredor_direita, total_vendido)
+            elif opcao_direira_ou_esquerda == OPCAO_ESQUERDA:
+                vender_uma_passagem(pol_corredor_esquerda, total_vendido)
+            else:
+                print('Opção inválida!')
+
+        else:
+            print('Opção inválida!')
+
+        if total_vendido == 12:
+            print('\n***** Todas as passagens foram vendidas! *****\n')
+            break
+
+        comprar_mais = input('Deseja vender outra passagem? [S/N]: ').upper()
+        if comprar_mais == 'S':
+            limpar_tela()
+            continue
+        else:
+            break
+
+
+def vender_uma_passagem(poltronas, total_passagens):
+    if todas_poltronas_estao_vendidas(poltronas):
+        print('Todos os lugares estão ocupados!')
+
+    print('Posições livres:')
+    mostra_posicoes_livres(poltronas)
+
+    polcompra = int(input('\nDigite o número da poltrona desejada: '))
+    if polcompra > 3:
+        print('Opção invalida!')
+
+    poltronas[polcompra - 1] = 'X'
+    total_passagens += 1
 
 
 def opcao_ver_poltronas():
@@ -94,16 +140,25 @@ if __name__ == '__main__':
     # Declaração de Variáveis
     passagem_meia = 0
     passagem_inteira = 0
-    poltronas_janela_direita = [] * 3
-    poltronas_corredor_direita = [] * 3
-    poltronas_janela_esquerda = [] * 3
-    poltronas_corredor_esquerda = [] * 3
+    poltronas_janela_direita = [''] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_corredor_direita = [''] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_janela_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_corredor_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
+    total_vendido = 0
 
     while True:
         opcao_menu = menu_passagem()
 
         if opcao_menu == VENDER_PASSAGEM:
-            opcao_vender_passagem(passagem_meia, passagem_inteira, poltronas_janela_direita, poltronas_corredor_direita, poltronas_janela_esquerda, poltronas_corredor_esquerda)
+            opcao_vender_passagem(
+                passagem_meia,
+                passagem_inteira,
+                poltronas_janela_direita,
+                poltronas_corredor_direita,
+                poltronas_janela_esquerda,
+                poltronas_corredor_esquerda,
+                total_vendido
+            )
 
         elif opcao_menu == VER_POLTRONAS:
             opcao_ver_poltronas()
