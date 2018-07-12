@@ -24,7 +24,7 @@ NUMERO_ASSENTOS_POR_FILA = NUMERO_PASSAGENS_DISPONIVEIS // 4
 
 def limpar_tela():
     import os
-    os.system('cls' if os.name == 'nt' else 'clear') 
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def menu_poltronas():
@@ -55,12 +55,8 @@ def todas_poltronas_estao_vendidas(poltronas):
 
 
 def mostra_posicoes_livres(poltronas):
-    for indice, poltrona in enumerate(poltronas):
-        numero_da_poltrona = indice + 1
-        if not poltrona:
-            print(numero_da_poltrona, end=' - ')
-        else:
-            print('X', end=' - ')
+    ' - '.join(str(indice) if not poltrona else poltrona
+               for indice, poltrona in enumerate(poltronas, start=1))
 
 
 def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
@@ -72,7 +68,7 @@ def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corre
             pass_meia += 1
         else:
             pass_inteira += 1
-    
+
         opcao_janela_ou_corredor = input('Digite opção Janela [ J ] ou Corredor [ C ]?: ').upper()
         if opcao_janela_ou_corredor == OPCAO_JANELA:
 
