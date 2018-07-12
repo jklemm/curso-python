@@ -9,6 +9,11 @@
 # * Ao final da execução, informe o faturamento total das vendas (em Reais), caso a viagem seja confirmada.
 # * Ao final da execução, informe se a viagem foi cancelada ou não.
 
+VENDER_PASSAGEM = 1
+VER_POLTRONAS = 2
+FINALIZAR_VENDAS = 3
+SAIR = 4
+
 
 def limpar_tela():
     import os
@@ -39,11 +44,11 @@ if __name__ == '__main__':
     while True:
         opcao_menu = menu_passagem()
 
-        if opcao_menu == 1:
+        if opcao_menu == VENDER_PASSAGEM:
             print('Vender passagem')
-        elif opcao_menu == 2:
+        elif opcao_menu == VER_POLTRONAS:
             print('Ver poltronas')
-        elif opcao_menu == 3:
+        elif opcao_menu == FINALIZAR_VENDAS:
             print('Finalizar Vendas')
-        elif opcao_menu == 4:
+        elif opcao_menu == SAIR:
             print('Sair')
