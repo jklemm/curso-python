@@ -29,10 +29,10 @@ def limpar_tela():
 
 def menu_poltronas():
     print('Lugares vagos [ ] - Lugares ocupados [X]\n')
-    print('                     /__ _ [ ][ ][ ][ ][ ][ ] \  : Janela Direita')
-    print('Frente do ônibus <- |   |  [ ][ ][ ][ ][ ][ ]  | : Janela Esquerda')
-    print('                    | __|_ [ ][ ][ ][ ][ ][ ]  | : Corredor Direita')
-    print('                     \     [ ][ ][ ][ ][ ][ ] /  : Corredor Esquerda')
+    print('                     /__ _ [ ][ ][ ] \  : Janela Direita')
+    print('Frente do ônibus <- |   |  [ ][ ][ ]  | : Janela Esquerda')
+    print('                    | __|_ [ ][ ][ ]  | : Corredor Direita')
+    print('                     \     [ ][ ][ ] /  : Corredor Esquerda')
 
 
 def menu_passagem():
@@ -55,8 +55,9 @@ def todas_poltronas_estao_vendidas(poltronas):
 
 
 def mostra_posicoes_livres(poltronas):
-    return ' - '.join(str(indice) if not poltrona else poltrona
-                      for indice, poltrona in enumerate(poltronas, start=1))
+    posicoes_livres = ' - '.join(str(indice) if not poltrona else poltrona
+                                 for indice, poltrona in enumerate(poltronas, start=1))
+    print(posicoes_livres)
 
 
 def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
