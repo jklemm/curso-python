@@ -6,13 +6,26 @@
 # Saída: [100-105], [110-111], [113-115], [150]
 
 
-def agrupa(numeros):
-    if not numeros:
+def agrupa(numeros_texto):
+    if not numeros_texto:
         return ''
 
-    resultado = numeros.split(', ')
+    lista_numeros_texto = numeros_texto.split(', ')
+    resultado = ''
 
-    if len(resultado) == 1:
-        return '[{}]'.format(resultado[0])
+    if len(lista_numeros_texto) == 1:
+        return '[{}]'.format(lista_numeros_texto[0])
     else:
-        return '[{}-{}]'.format(resultado[0],resultado[1])
+        lista_numeros = converte_str_para_int(lista_numeros_texto)
+        for indice, numero in enumerate(lista_numeros):
+            try:
+                if lista_numeros[indice + 1] == numero + 1:
+                    continue
+                else:
+                    resultado += '[{}-{}]'.format(lista_numeros[indice], lista_numeros[indice+1])
+            except IndexError:
+                return resultado
+
+
+def converte_str_para_int(lista):
+    return list(map(int, lista))

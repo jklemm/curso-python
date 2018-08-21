@@ -15,4 +15,8 @@ class AgrupaTests(TestCase):
        
     def test_retorno_de_dois_numeros(self):
         retorno = agrupa('1, 2')
-        self.assertEqual('[1-2]',retorno)
+        self.assertEqual('[1-2]', retorno)
+
+    def test_retorno_de_tres_numeros(self):
+        retorno = agrupa('1, 2, 3')
+        self.assertEqual('[1-3]', retorno)
