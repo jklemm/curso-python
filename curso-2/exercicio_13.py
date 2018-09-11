@@ -10,11 +10,16 @@ altura = float(input('Informe sua altura (em metros): '))
 
 # processamento
 if sexo.upper() == 'M':
-    peso_ideal = (72.7 * altura) - 58
-    resposta = 'O peso ideal para um homem de {}m de altura é {:.2f} quilos'.format(altura, peso_ideal)
+    constante = 72.7
+    decremento = 58
+    genero = 'um homem'
 else:
-    peso_ideal = (62.1 * altura) - 44.7
-    resposta = 'O peso ideal para uma mulher de {}m de altura é {:.2f} quilos'.format(altura, peso_ideal)
+    constante = 62.1
+    decremento = 44.7
+    genero = 'uma mulher'
+
+peso_ideal = constante * altura - decremento
+resposta = 'O peso ideal para {} de {}m de altura é {:.2f} quilos'.format(genero, altura, peso_ideal)
 
 # saída de dados
 print(resposta)
