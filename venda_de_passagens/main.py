@@ -18,8 +18,9 @@ OPCAO_JANELA = 'J'
 OPCAO_CORREDOR = 'C'
 OPCAO_DIREITA = 'D'
 OPCAO_ESQUERDA = 'E'
-NUMERO_PASSAGENS_DISPONIVEIS = 12
+NUMERO_PASSAGENS_DISPONIVEIS = 40
 NUMERO_ASSENTOS_POR_FILA = NUMERO_PASSAGENS_DISPONIVEIS // 4
+VALOR_PASSAGEM = 100
 
 
 def limpar_tela():
@@ -27,12 +28,8 @@ def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def menu_poltronas():
-    print('Lugares vagos [ ] - Lugares ocupados [X]\n')
-    print('                     /__ _ [ ][ ][ ] \  : Janela Direita')
-    print('Frente do ônibus <- |   |  [ ][ ][ ]  | : Janela Esquerda')
-    print('                    | __|_ [ ][ ][ ]  | : Corredor Direita')
-    print('                     \     [ ][ ][ ] /  : Corredor Esquerda')
+def poltrona_ja_esta_vendida(poltrona):
+    return True if poltrona == 'X' else False
 
 
 def menu_passagem():
@@ -54,21 +51,31 @@ def todas_poltronas_estao_vendidas(poltronas):
         return False
 
 
-def mostra_posicoes_livres(poltronas):
-    posicoes_livres = ' - '.join(str(indice) if not poltrona else poltrona
-                                 for indice, poltrona in enumerate(poltronas, start=1))
+def busca_posicoes_livres(poltronas):
+    lista_posicoes_livres = []
+    for indice, poltrona in enumerate(poltronas, start=1):
+        if not poltrona_ja_esta_vendida(poltrona):
+            lista_posicoes_livres.append(indice)
+    return lista_posicoes_livres
+
+
+def exibe_posicoes_livres(poltronas_livres):
+    posicoes_livres = ' - '.join(str(numero_poltrona) for numero_poltrona in poltronas_livres)
     print(posicoes_livres)
 
 
 def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
     while total_vendido <= NUMERO_PASSAGENS_DISPONIVEIS:
         print('Vender passagem')
-        idade = int(input('Qual a idade do passageiro?: '))
+        idade = obter_idade()
         paga_meia = idade < 5 or idade > 65
         if paga_meia:
             pass_meia += 1
         else:
             pass_inteira += 1
+
+        print('Escolha sua poltrona: ')
+        opcao_ver_poltronas()
 
         opcao_janela_ou_corredor = input('Digite opção Janela [ J ] ou Corredor [ C ]?: ').upper()
         if opcao_janela_ou_corredor == OPCAO_JANELA:
@@ -106,31 +113,69 @@ def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corre
             break
 
 
+def obter_idade():
+    idade_valida = False
+    idade = 0
+    while not idade_valida:
+        idade = int(input('Qual a idade do passageiro?: '))
+        if 0 <= idade <= 120:
+            idade_valida = True
+        else:
+            print('Idade inválida, digite novamente!')
+    return idade
+
+
 def vender_uma_passagem(poltronas, total_passagens):
     if todas_poltronas_estao_vendidas(poltronas):
         print('Todos os lugares estão ocupados!')
 
     print('Posições livres:')
-    mostra_posicoes_livres(poltronas)
+    lista_posicoes_livres = busca_posicoes_livres(poltronas)
+    exibe_posicoes_livres(lista_posicoes_livres)
 
-    polcompra = int(input('\nDigite o número da poltrona desejada: '))
-    if polcompra > 3:
-        print('Opção invalida!')
+    finalizou_compra = False
+    while finalizou_compra is False:
+        polcompra = int(input('\nDigite o número da poltrona desejada: '))
+        if polcompra in lista_posicoes_livres:
+            poltronas[polcompra - 1] = 'X'
+            total_passagens += 1
+            finalizou_compra = True
+        else:
+            print('Opção invalida! Escolha uma poltrona válida!')
+            finalizou_compra = False
 
-    poltronas[polcompra - 1] = 'X'
-    total_passagens += 1
+    print('\nPassagem vendida com sucesso!\n')
 
 
 def opcao_ver_poltronas():
-    print('Ver poltronas')
+    print('Lugares vagos [ ] - Lugares ocupados [X]\n')
+    print('   /__ _ ', end='')
+    for poltrona in poltronas_janela_direita:
+        print('[{}]'.format(poltrona if poltrona else ' '), end='')
+    print(' \  : Janela Direita')
+
+    print('  |   |  ', end='')
+    for poltrona in poltronas_corredor_direita:
+        print('[{}]'.format(poltrona if poltrona else ' '), end='')
+    print('  | : Corredor Direita')
+
+    print('  | __|_ ', end='')
+    for poltrona in poltronas_corredor_esquerda:
+        print('[{}]'.format(poltrona if poltrona else ' '), end='')
+    print('  | : Corredor Esquerda')
+
+    print('   \     ', end='')
+    for poltrona in poltronas_janela_esquerda:
+        print('[{}]'.format(poltrona if poltrona else ' '), end='')
+    print(' /  : Janela Esquerda')
 
 
 def opcao_finalizar_vendas():
     print('Finalizar Vendas')
-
-
-def opcao_sair():
-    print('Sair')
+    # TODO: Soma meias e inteiras e verifica se 50% ou mais foi vendido, senão a viagem é cancelada
+    # TODO: Multiplica a qtd de meia pelo valor da meia entrada
+    # TODO: Multiplica a qtd de inteiras pelo valor da entrada inteira
+    # TODO: Soma e informa o total vendido
 
 
 if __name__ == '__main__':
@@ -158,10 +203,12 @@ if __name__ == '__main__':
             )
 
         elif opcao_menu == VER_POLTRONAS:
+            print('Ver poltronas\n')
             opcao_ver_poltronas()
 
         elif opcao_menu == FINALIZAR_VENDAS:
             opcao_finalizar_vendas()
+            break
 
         elif opcao_menu == SAIR:
-            opcao_sair()
+            break
