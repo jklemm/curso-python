@@ -134,7 +134,7 @@ def vender_uma_passagem(poltronas, total_passagens):
     exibe_posicoes_livres(lista_posicoes_livres)
 
     finalizou_compra = False
-    while finalizou_compra is False:
+    while not finalizou_compra:
         polcompra = int(input('\nDigite o número da poltrona desejada: '))
         if polcompra in lista_posicoes_livres:
             poltronas[polcompra - 1] = 'X'
