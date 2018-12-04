@@ -10,6 +10,7 @@
 # * Ao final da execução, informe se a viagem foi cancelada ou não.
 
 # Declaração de Constantes
+POLTRONA_VAZIA = ''
 MEIA = 'MEIA'
 INTEIRA = 'INTEIRA'
 VENDER_PASSAGEM = 1
@@ -47,10 +48,7 @@ def menu_passagem():
 
 
 def todas_poltronas_estao_vendidas(poltronas):
-    if '' not in poltronas:
-        return True
-    else:
-        return False
+    return POLTRONA_VAZIA not in poltronas
 
 
 def busca_posicoes_livres(poltronas):
@@ -154,7 +152,7 @@ def opcao_ver_poltronas():
     print('   /__ _ ', end='')
     for poltrona in poltronas_janela_direita:
         print('[{}]'.format(poltrona if poltrona else ' '), end='')
-    print(' \  : Janela Direita')
+    print(' \\  : Janela Direita')
 
     print('  |   |  ', end='')
     for poltrona in poltronas_corredor_direita:
@@ -166,7 +164,7 @@ def opcao_ver_poltronas():
         print('[{}]'.format(poltrona if poltrona else ' '), end='')
     print('  | : Corredor Esquerda')
 
-    print('   \     ', end='')
+    print('   \\     ', end='')
     for poltrona in poltronas_janela_esquerda:
         print('[{}]'.format(poltrona if poltrona else ' '), end='')
     print(' /  : Janela Esquerda')
@@ -187,10 +185,10 @@ def opcao_finalizar_vendas():
 
 if __name__ == '__main__':
     # Declaração de Variáveis
-    poltronas_janela_direita = [''] * NUMERO_ASSENTOS_POR_FILA
-    poltronas_corredor_direita = [''] * NUMERO_ASSENTOS_POR_FILA
-    poltronas_janela_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
-    poltronas_corredor_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_janela_direita = [POLTRONA_VAZIA] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_corredor_direita = [POLTRONA_VAZIA] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_janela_esquerda = [POLTRONA_VAZIA] * NUMERO_ASSENTOS_POR_FILA
+    poltronas_corredor_esquerda = [POLTRONA_VAZIA] * NUMERO_ASSENTOS_POR_FILA
     quantidade_vendidos = {MEIA: 0, INTEIRA: 0}
     total_vendido = 0
 
