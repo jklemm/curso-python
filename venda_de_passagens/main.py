@@ -10,6 +10,8 @@
 # * Ao final da execução, informe se a viagem foi cancelada ou não.
 
 # Declaração de Constantes
+MEIA = 'MEIA'
+INTEIRA = 'INTEIRA'
 VENDER_PASSAGEM = 1
 VER_POLTRONAS = 2
 FINALIZAR_VENDAS = 3
@@ -64,15 +66,15 @@ def exibe_posicoes_livres(poltronas_livres):
     print(posicoes_livres)
 
 
-def opcao_vender_passagem(pass_meia, pass_inteira, pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
+def opcao_vender_passagem(pol_janela_direita, pol_corredor_direita, pol_janela_esquerda, pol_corredor_esquerda, total_vendido):
     while total_vendido <= NUMERO_PASSAGENS_DISPONIVEIS:
         print('Vender passagem')
         idade = obter_idade()
         paga_meia = idade < 5 or idade > 65
         if paga_meia:
-            pass_meia += 1
+            quantidade_vendidos[MEIA] += 1
         else:
-            pass_inteira += 1
+            quantidade_vendidos[INTEIRA] += 1
 
         print('Escolha sua poltrona: ')
         opcao_ver_poltronas()
@@ -171,21 +173,25 @@ def opcao_ver_poltronas():
 
 
 def opcao_finalizar_vendas():
-    print('Finalizar Vendas')
-    # TODO: Soma meias e inteiras e verifica se 50% ou mais foi vendido, senão a viagem é cancelada
-    # TODO: Multiplica a qtd de meia pelo valor da meia entrada
-    # TODO: Multiplica a qtd de inteiras pelo valor da entrada inteira
-    # TODO: Soma e informa o total vendido
+    valor_meia = (quantidade_vendidos[MEIA] * VALOR_PASSAGEM) / 2
+    valor_inteira = quantidade_vendidos[INTEIRA] * VALOR_PASSAGEM
+    valor_total = valor_meia + valor_inteira
+
+    if total_vendido >= NUMERO_PASSAGENS_DISPONIVEIS / 2:
+        print('O numero minimo de passagens foi atingido! A viagem foi confirmada.')
+    else:
+        print('O numero minimo de passagens não foi atingido. A viagem esta cancelada!')
+
+    print('O total vendido foi R$ {}!'.format(valor_total))
 
 
 if __name__ == '__main__':
     # Declaração de Variáveis
-    passagem_meia = 0
-    passagem_inteira = 0
     poltronas_janela_direita = [''] * NUMERO_ASSENTOS_POR_FILA
     poltronas_corredor_direita = [''] * NUMERO_ASSENTOS_POR_FILA
     poltronas_janela_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
     poltronas_corredor_esquerda = [''] * NUMERO_ASSENTOS_POR_FILA
+    quantidade_vendidos = {MEIA: 0, INTEIRA: 0}
     total_vendido = 0
 
     while True:
@@ -193,8 +199,6 @@ if __name__ == '__main__':
 
         if opcao_menu == VENDER_PASSAGEM:
             opcao_vender_passagem(
-                passagem_meia,
-                passagem_inteira,
                 poltronas_janela_direita,
                 poltronas_corredor_direita,
                 poltronas_janela_esquerda,
